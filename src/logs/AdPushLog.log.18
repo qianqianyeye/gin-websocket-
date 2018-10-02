@@ -1,0 +1,7 @@
+[2018/09/13 17:24:02 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 使用线下数据库[...]
+[2018/09/13 17:30:04 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 有新安卓端加入，当前连接数为 [1]
+[2018/09/13 17:32:55 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 有新安卓端加入，当前连接数为 [2]
+[2018/09/13 17:33:24 CST] [EROR] (AdPushServer_Go/src/webgo.Error:19) websocket出错了！ [read tcp 192.168.191.162:8010->192.168.191.178:50299: wsarecv: An existing connection was forcibly closed by the remote host.]
+[2018/09/13 17:33:24 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 有安卓端断开连接.. 当前连接数 [1]
+[2018/09/13 17:33:24 CST] [EROR] (AdPushServer_Go/src/webgo.Error:19) Error:%!(EXTRA []interface {}=[read tcp 192.168.191.162:8010->192.168.191.178:50299: wsarecv: An existing connection was forcibly closed by the remote host.])
+[2018/09/13 17:33:24 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 有安卓端断开连接.. 当前连接数 [1]

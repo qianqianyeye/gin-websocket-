@@ -1,0 +1,34 @@
+[2018/09/05 17:16:13 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 使用线下数据库[...]
+[2018/09/05 17:16:46 CST] [EROR] (AdPushServer_Go/src/webgo.Error:19) [runtime error: slice bounds out of range
+
+AdPushServer_Go/src/webgo.TryCatchWeb
+	D:/repo/src/AdPushServer_Go/src/webgo/CatchPanic.go:38
+runtime.call32
+	C:/Go/src/runtime/asm_amd64.s:573
+runtime.gopanic
+	C:/Go/src/runtime/panic.go:505
+runtime.panicslice
+	C:/Go/src/runtime/panic.go:35
+AdPushServer_Go/src/middleware.ClawMiddle
+	D:/repo/src/AdPushServer_Go/src/middleware/ClawMiddle.go:37
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.(*Context).Next
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/context.go:108
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.RecoveryWithWriter.func1
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/recovery.go:48
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.(*Context).Next
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/context.go:108
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.LoggerWithWriter.func1
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/logger.go:83
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.(*Context).Next
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/context.go:108
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/gin.go:359
+AdPushServer_Go/src/vendor/github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	D:/repo/src/AdPushServer_Go/src/vendor/github.com/gin-gonic/gin/gin.go:326
+net/http.serverHandler.ServeHTTP
+	C:/Go/src/net/http/server.go:2694
+net/http.(*conn).serve
+	C:/Go/src/net/http/server.go:1830
+runtime.goexit
+	C:/Go/src/runtime/asm_amd64.s:2361]
+

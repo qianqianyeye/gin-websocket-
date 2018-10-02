@@ -1,0 +1,9 @@
+[2018/09/05 17:41:18 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 使用线下数据库[...]
+[2018/09/05 17:50:42 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 接收到参数：[map[android_screens:[110] sign:8f25cfaa6d908933984b4a37dc09b808 timeStamp:1.536139695822e+12]]
+
+[2018/09/05 17:50:42 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 加密前字符串：[android_screens=1101536139695822]
+
+[2018/09/05 17:50:42 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 加密后字符串：[8f25cfaa6d908933984b4a37dc09b808]
+
+[2018/09/05 17:50:42 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 要对比的加密字符串：[8f25cfaa6d908933984b4a37dc09b808]
+

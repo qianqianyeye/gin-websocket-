@@ -1,0 +1,2 @@
+[2018/09/13 18:02:06 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 使用线下数据库[...]
+[2018/09/13 18:02:08 CST] [DEBG] (AdPushServer_Go/src/webgo.Debug:15) 有新安卓端加入，当前连接数为 [1]

@@ -1,0 +1,61 @@
+
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        var json = {
+            "socketType":"createDeviceID",
+            "data":{
+                "androidID":"0A:BC:12:00:00:00"
+            }
+        };
+     // var s2 = io().connect("http://localhost:5000");
+        //var android=io()
+     var android = io.connect("http://localhost:5000/android");
+     android.on("connect", function(){
+         $('#messages').append($('<li>').text("connect ..!"));
+     })
+     android.on("disconnect", function(){
+         $('#messages').append($('<li>').text("disconnected ..!"));
+     })
+
+     android.on("meng", function(message){
+         alert(message)
+         $('#messages').append($('<li>').text(JSON.stringify(message)));
+     })
+
+     // s2.emit('createDeviceID', JSON.stringify(json));
+      $('form').submit(function(){
+          android.emit("heartImpulse",JSON.stringify(json))
+         // alert("a")
+      // s2.emit('createDeviceID', JSON.stringify(json));
+        /*  socket.emit('chat',JSON.stringify(json),function (data) {
+              alert(data)
+          })
+          socket.on('chat',function (msg) {
+              alert(msg)
+          })*/
+        $('#m').val('');
+        return false;
+      });
+    </script>
+  </body>
+</html>

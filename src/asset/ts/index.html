@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Sample of websocket with golang</title>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script>
+
+      $(function() {
+       // var ws = new WebSocket("wss://adpushservergo.modo-modo.com/android");
+          var ws = new WebSocket("ws://localhost:8010/android");
+        var ws2 = new WebSocket("ws://localhost:8010/claw");
+
+          //心跳检测
+          var heartCheck = {
+              timeout: 5000,//60秒
+              timeoutObj: null,
+              reset: function(){
+                  clearTimeout(this.timeoutObj);
+                  return this;
+              },
+              start: function(){
+                  this.timeoutObj = setTimeout(function(){
+                      var data = {
+                          "socketType": "heartImpulse",
+                          "deviceID": "S26597",
+                          "sign":"f06b1fb9ed9a6dfc78c688739ddfc68e"
+                      }
+                      ws.send(JSON.stringify(data));
+                  }, this.timeout)
+              }
+          }
+
+        //  setInterval(testHeart(ws),"5000");
+          ws.onopen = function () {
+              //心跳检测重置
+              heartCheck.reset().start();
+          };
+        ws.onmessage = function(e) {
+          console.log("收信:" + event.data);
+        };
+        ws2.onmessage = function(e) {
+              console.log("收信:" + event.data);
+          };
+        ws.onclose = function(evt) {
+              console.log("收信:关闭！！" );
+          }
+        var $ul = $('#msg-list');
+        $('#sendBtn').click(function(){
+          var createDeviceID = {"socketType":"createDeviceID",
+              "data":{
+                "androidID":"0A:BC:12:00:00:00"
+            }
+            }
+            ws.send(JSON.stringify(createDeviceID));
+          //console.log("送信メッセージ:" + data);
+        });
+
+          $('#sendBtn2').click(function(){
+              var data = {
+                  "socketType": "updateAdModel",
+                  "deviceID": "S26597",
+                  "sign":"f06b1fb9ed9a6dfc78c688739ddfc68e",
+                  "data":{
+                      "adModelType":"1", //广告模板 ID
+                      "adUpdateID":"20180401000", //本次更新广告内容的更新编号，用于查询
+                      "adDownloadProgress":"95"//广告下载进度返回两位整形对应百分比}
+              }
+              }
+              ws.send(JSON.stringify(data));
+          });
+
+          $('#sendBtn3').click(function(){
+              var data = {
+                  "socketType": "heartImpulse",
+                  "deviceID": "S26597",
+                  "sign":"f06b1fb9ed9a6dfc78c688739ddfc68e"
+              }
+              ws.send(JSON.stringify(data));
+              //console.log("送信メッセージ:" + data);
+          });
+
+          $('#sendBtn4').click(function(){
+              var data = {
+                  "socketType": "screenShot",
+                  "deviceID": "S18863",
+                  "data":{
+                      "imageUrl":"www.qiniu.com/xxxx.jpg"
+                  }
+          }
+              ws.send(JSON.stringify(data));
+          });
+
+          $('#sendBtn5').click(function(){
+              var data = {
+                  "socketType": "cameraMonitor",
+                  "deviceID": "S18863",
+                  "data":{
+                      "imageUrl":"www.qiniu.com/xxxx.jpg"
+                  }
+              }
+              ws.send(JSON.stringify(data));
+              //console.log("送信メッセージ:" + data);
+          });
+
+          $('#sendBtn6').click(function(){
+              var data = {
+                  "socketType": "deviceInfo",
+                  "deviceID": "S73993",
+                  "sign":"cfd5c60a313b5a564a296bf2ed5c7f5d"
+              }
+              ws.send(JSON.stringify(data));
+              //console.log("送信メッセージ:" + data);
+          });
+
+          $('#sendBtn7').click(function(){
+              var data = {
+                  "socketType": "checkUpdateID",
+                  "deviceID": "S18863",
+                  "data": {"adUpdateID": "201"},
+                  "sign":"d298fa549d10be2464e31911add188e5"
+          }
+              ws.send(JSON.stringify(data));
+              //console.log("送信メッセージ:" + data);
+          });
+
+          $('#sendBtn8').click(function(){
+              var data =   {
+                  "socketType":"ctrlBtnPress",
+                  "deviceID":"S29193",
+                  "data":{
+                      "grabBoardDeviceID":"S29193",
+                      "left":"false",
+                      "right":"true",
+                      "up":"false",
+                      "down":"false"
+                  }
+              }
+              ws.send(JSON.stringify(data));
+          });
+          $('#sendBtn9').click(function(){
+              var data =   {
+                  "socketType":"catchBtnPress",
+                  "deviceID":"S29193",
+                  "data":{
+                      "grabBoardDeviceID":"S29193",
+                  }
+              }
+              ws2.send(JSON.stringify(data));
+          });
+
+          $('#sendBtn10').click(function(){
+              var data={ android_screens: [ 110 ],
+                      sign: '2698ba0b1700ca1aef3a4bd56b77d83d',
+                      timeStamp: 1536135805868 }
+              $.ajax({
+                  url: "/test/test",//路径
+                  type: 'post',//以post方式请求
+                  async: false,//async为false表示同步
+                  datatype: 'json',//数据类型为json
+                  data: "data=yujinhu&edit=Hello",//传数值、字符串；字符拼接满足Sql语句的需要。
+                  success: function (result) {//此方法起到监视作用
+                     alert(result)
+                  }
+              });
+          });
+      });
+
+      function testHeart(ws){
+          var data = {
+              "socketType": "heartImpulse",
+              "deviceID": "S26597",
+              "sign":"f06b1fb9ed9a6dfc78c688739ddfc68e"
+          }
+          ws.send(JSON.stringify(data));
+      }
+		</script>
+	</head>
+	<body>
+			<input type="button" id="sendBtn" value="创建设备"></input>
+            <input type="button" id="sendBtn2" value="发送广告/广告更新"></input>
+            <input type="button" id="sendBtn3" value="心跳"></input>
+            <input type="button" id="sendBtn4" value="屏幕快照"></input>
+            <input type="button" id="sendBtn5" value="摄像头设备拍照"></input>
+            <input type="button" id="sendBtn6" value="获取设备的基础信息"></input>
+            <input type="button" id="sendBtn7" value="广告更新数据对比"></input>
+            <input type="button" id="sendBtn8" value="ctrlBtnPress"></input>
+            <input type="button" id="sendBtn9" value="catchBtnPress"></input>
+            <input type="button" id="sendBtn10" value="测试"></input>
+	</body>
+</html>
